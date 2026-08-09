@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090711">
+<title>Rutu Rani — A Secret Birthday Experience by Sonal | FINAL FIXED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+:root{
+  --bg:#090711;--bg2:#160d1e;--ink:#211822;--white:#fff;
+  --rose:#ff4d86;--pink:#ff86ad;--lilac:#b9a6ff;--gold:#ffd98a;
+  --cream:#fff8fb;--muted:#746876;
+  --shadow:0 30px 90px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:"Segoe UI","Trebuchet MS",Arial,sans-serif;
+  background:var(--bg);color:#fff;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+button{font:inherit}
+.emoji{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji","Noto Emoji",sans-serif}
+#app{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
+.scene{
+  position:absolute;inset:0;visibility:hidden;opacity:0;
+  overflow:hidden;padding:clamp(28px,5vw,72px);
+  transition:background .6s ease;
+}
+.scene.active{visibility:visible}
+.scene.dark{background:
+  radial-gradient(circle at 78% 18%,rgba(255,79,135,.20),transparent 27%),
+  radial-gradient(circle at 18% 80%,rgba(174,142,255,.15),transparent 30%),
+  linear-gradient(135deg,#090711,#170c1e 60%,#090711)}
+.scene.light{color:var(--ink);background:
+  radial-gradient(circle at 12% 20%,rgba(255,134,173,.18),transparent 25%),
+  linear-gradient(135deg,#fff8fb,#f6efff 58%,#fff)}
+.scene.night{background:
+  radial-gradient(circle at 50% 0%,#263766 0%,#11172d 48%,#060812 100%)}
+.ambient{position:absolute;inset:-25%;pointer-events:none;opacity:.75;
+  background:
+    radial-gradient(circle at 20% 25%,rgba(255,82,143,.12),transparent 20%),
+    radial-gradient(circle at 80% 70%,rgba(122,107,255,.13),transparent 24%);
+  filter:blur(24px);animation:drift 12s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(3%,-2%,0) scale(1.04)}}
+
+.scene-inner{
+  position:relative;z-index:2;width:min(1240px,100%);height:100%;margin:auto;
+  display:grid;grid-template-columns:1fr .82fr;gap:clamp(28px,6vw,96px);
+  align-items:center;
+}
+.center{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.copy{min-width:0}
+.eyebrow{font-size:clamp(10px,1vw,14px);font-weight:800;letter-spacing:.20em;
+  text-transform:uppercase;color:#ffb8ce;margin-bottom:16px}
+.light .eyebrow{color:#a8466a}
+h1,h2,p{margin:0}
+.headline,.display,.final-line{
+  font-family:Georgia,"Times New Roman",serif;
+  letter-spacing:-.045em;
+}
+.headline{font-size:clamp(44px,6.5vw,98px);line-height:.98;margin-bottom:18px}
+.headline.small{font-size:clamp(32px,4.5vw,68px)}
+.display{font-size:clamp(72px,10vw,150px);line-height:.78;font-weight:800}
+.display.rose,.rose{color:var(--rose)}
+.pink{color:var(--pink)}
+.lead{font-size:clamp(15px,1.45vw,21px);line-height:1.62;max-width:780px;color:#f2e8ef}
+.light .lead{color:#5c515d}
+.subline{font-size:clamp(16px,1.7vw,25px);line-height:1.5;color:#f4dce6;margin-top:10px}
+.light .subline{color:#5c4350}
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  min-height:54px;padding:13px 20px 13px 23px;margin-top:28px;
+  border:1px solid rgba(255,255,255,.25);border-radius:999px;
+  background:rgba(255,255,255,.10);color:#fff;cursor:pointer;
+  font-weight:800;font-size:15px;letter-spacing:.01em;
+  backdrop-filter:blur(16px);box-shadow:0 15px 40px rgba(0,0,0,.18);
+  transition:transform .25s ease,background .25s ease;
+}
+.cta:hover{transform:translateY(-2px);background:rgba(255,255,255,.17)}
+.light .cta{color:#5b233e;background:#fff;border-color:#e7b2c8}
+.arrow{
+  width:31px;height:31px;border-radius:50%;display:grid;place-items:center;
+  background:var(--rose);flex:0 0 auto;
+}
+.arrow svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+.photo-stage{position:relative;justify-self:center;width:min(470px,40vw);height:min(650px,76vh)}
+.photo-frame{
+  position:absolute;inset:4% 5%;padding:10px;background:#fff;border-radius:11px;
+  box-shadow:var(--shadow);transform:rotate(2deg);overflow:hidden;
+}
+.photo-frame img{width:100%;height:100%;display:block;object-fit:contain;background:#f6edf2;border-radius:5px}
+.photo-card{
+  position:absolute;width:min(210px,17vw);height:min(270px,31vh);padding:7px;
+  background:#fff;box-shadow:0 18px 55px rgba(0,0,0,.35);overflow:hidden;
+}
+.photo-card img{width:100%;height:100%;object-fit:cover}
+.card-a{left:-5%;bottom:4%;transform:rotate(-8deg)}
+.card-b{right:-3%;top:2%;transform:rotate(7deg)}
+.polaroid{background:#fff;padding:10px 10px 34px;box-shadow:var(--shadow)}
+.polaroid img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+.photo-tile{
+  width:clamp(125px,16vw,205px);height:clamp(165px,24vw,275px);
+  padding:8px;background:#fff;box-shadow:0 20px 55px rgba(0,0,0,.25);
+  overflow:hidden;transform:rotate(var(--r));
+}
+.photo-tile img{width:100%;height:100%;object-fit:cover}
+.timeline{
+  position:relative;margin:26px 0 0;width:min(760px,100%);height:6px;
+  background:linear-gradient(90deg,var(--rose),var(--lilac));border-radius:99px;
+}
+.timeline:before,.timeline:after{content:"";position:absolute;width:16px;height:16px;
+  border-radius:50%;top:50%;transform:translateY(-50%);background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.10)}
+.timeline:before{left:-2px}.timeline:after{right:-2px}
+.timeline-labels{display:flex;justify-content:space-between;width:min(820px,100%);
+  margin-top:12px;font-weight:800;font-size:12px;letter-spacing:.08em;color:#dcbecb}
+.light .timeline-labels{color:#775e68}
+.map{
+  width:min(650px,48vw);height:min(430px,60vh);position:relative;
+  border-radius:30px;background:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.08),transparent 24%),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.07),transparent 20%),
+    rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.map:before{content:"";position:absolute;left:15%;right:15%;top:49%;
+  height:2px;background:linear-gradient(90deg,transparent,var(--pink),transparent);
+  box-shadow:0 0 18px var(--pink)}
+.pin{position:absolute;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);font-weight:900}
+.pin.one{left:12%;top:37%}.pin.two{right:12%;top:61%}
+.distance-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 22px var(--gold);left:16%;top:50%;animation:travel 3s ease-in-out infinite}
+@keyframes travel{50%{left:84%}}
+.big-word{
+  font-family:Georgia,serif;font-size:clamp(68px,11vw,160px);font-weight:800;
+  line-height:.85;letter-spacing:-.07em;cursor:pointer;user-select:none;
+  text-shadow:0 0 50px rgba(255,100,150,.18)
+}
+.big-word.outline{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.72)}
+.big-word.bond{color:var(--pink);transform:scale(1.06)}
+.museum-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.stack{position:relative;width:min(430px,37vw);height:min(570px,68vh);cursor:pointer;justify-self:center}
+.stack-card{position:absolute;inset:0;padding:10px;background:#fff;border-radius:10px;
+  box-shadow:var(--shadow);transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.stack-card img{width:100%;height:100%;object-fit:contain;background:#f6edf2;border-radius:5px}
+.stack-card:nth-child(1){transform:rotate(-7deg) translate(-10px,10px)}
+.stack-card:nth-child(2){transform:rotate(4deg) translate(8px,-5px)}
+.stack-card:nth-child(3){transform:rotate(-1deg)}
+.memory-info{padding:26px;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:rgba(255,255,255,.06)}
+.memory-count{font-size:11px;letter-spacing:.15em;font-weight:900;color:#ffc3d4}
+.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:min(820px,100%);margin-top:24px}
+.archive-card{
+  min-height:190px;padding:22px;border-radius:20px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 20px 60px rgba(0,0,0,.16);
+  transform:rotate(var(--r));opacity:0;cursor:pointer;
+}
+.archive-card.open{opacity:1}
+.archive-card b{display:block;color:#ffb8ce;margin-bottom:12px;font-size:12px;letter-spacing:.14em}
+.archive-card p{font-size:16px;line-height:1.5}
+.chat-window{
+  width:min(570px,48vw);height:min(570px,68vh);padding:24px;border-radius:28px;
+  background:linear-gradient(160deg,#f8f0f6,#fff);color:#2a2029;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:12px;overflow:hidden;
+}
+.chat-top{align-self:center;font-size:11px;letter-spacing:.14em;color:#8b6e7c;font-weight:900;margin-bottom:auto}
+.bubble{max-width:78%;padding:12px 15px;border-radius:18px;font-size:15px;line-height:1.45;opacity:0;transform:translateY(15px)}
+.bubble.rutu{align-self:flex-start;background:#ece1ec;border-bottom-left-radius:5px}
+.bubble.sonal{align-self:flex-end;background:#ffdce9;border-bottom-right-radius:5px}
+.typing{align-self:flex-start;color:#8e7681;font-size:13px;opacity:0}
+.letter-layout{grid-template-columns:.6fr 1.4fr}
+.letter-card{
+  height:min(700px,82vh);background:#fffaf4;color:#3d2c32;border-radius:18px;
+  box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+}
+.letter-head{padding:23px 28px;border-bottom:1px solid #ead7d8;
+  font:700 24px Georgia,serif;color:#8b3056}
+.letter-body{padding:26px 30px 50px;overflow:auto;font-size:clamp(14px,1.2vw,17px);line-height:1.72}
+.letter-body p{margin:0 0 20px}
+.highlight-box{margin-top:22px;padding:20px;border-radius:20px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12)}
+.final{background:
+  radial-gradient(circle at 50% 40%,rgba(255,74,134,.18),transparent 28%),
+  radial-gradient(circle at 25% 70%,rgba(185,166,255,.13),transparent 24%),
+  #0b0710}
+.final-grid{position:relative;width:min(610px,46vw);height:min(650px,76vh);justify-self:center}
+.final-grid img{
+  position:absolute;width:clamp(78px,9vw,128px);height:clamp(110px,13vw,180px);
+  object-fit:cover;background:#fff;padding:6px;border-radius:5px;box-shadow:0 18px 45px rgba(0,0,0,.35);
+  opacity:0;will-change:transform,opacity;
+}
+.final-message{font-family:Georgia,serif;font-size:clamp(30px,4vw,58px);line-height:1.13}
+.warning{
+  margin-top:20px;padding:13px 18px;border-radius:16px;background:#ffefab;color:#3b2a12;
+  font-weight:900;box-shadow:0 0 35px rgba(255,217,138,.20)
+}
+.night .scene-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.stars{position:absolute;inset:0;background-image:
+ radial-gradient(circle at 8% 12%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 24% 32%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 42% 14%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 61% 28%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 79% 13%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 90% 42%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 18% 73%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 72% 78%,#fff 0 1px,transparent 2px);
+ opacity:.65}
+.moon{position:absolute;width:150px;height:150px;border-radius:50%;background:#fff4c4;
+  box-shadow:0 0 90px rgba(255,244,196,.25);right:8%;top:10%}
+.moon:after{content:"";position:absolute;width:145px;height:145px;border-radius:50%;
+  background:#1b2345;left:43px;top:-15px}
+.replay{margin-top:24px}
+
+#hud{position:fixed;z-index:100;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;
+  align-items:center;pointer-events:none}
+.brand{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:rgba(255,255,255,.72)}
+.hud-actions{display:flex;gap:8px;pointer-events:auto}
+.hud-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.20);
+  background:rgba(0,0,0,.18);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(14px)}
+.hud-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#progress{position:fixed;z-index:100;left:50%;bottom:17px;transform:translateX(-50%);
+  display:flex;gap:4px;max-width:70vw}
+.dot{width:5px;height:5px;border-radius:20px;background:rgba(255,255,255,.23);transition:.3s}
+.dot.active{width:20px;background:var(--pink)}
+#counter{position:fixed;z-index:100;right:21px;bottom:15px;font-size:10px;color:rgba(255,255,255,.52);letter-spacing:.1em}
+
+@media(max-width:900px){
+  .scene{padding:24px 20px}
+  .scene-inner,.museum-wrap,.letter-layout{grid-template-columns:1fr;gap:20px;align-content:center}
+  .photo-stage{order:-1;width:min(330px,72vw);height:min(390px,43vh)}
+  .photo-card{width:105px;height:140px}
+  .card-a{left:-9%}.card-b{right:-9%}
+  .photo-row{gap:10px}
+  .photo-tile{width:105px;height:145px}
+  .map{width:min(640px,88vw);height:42vh}
+  .stack{width:min(290px,72vw);height:min(350px,44vh)}
+  .memory-info{padding:18px}
+  .archive-grid{grid-template-columns:1fr;max-height:42vh;overflow:auto}
+  .chat-window{width:min(560px,88vw);height:44vh}
+  .letter-card{height:55vh}
+  .letter-layout .copy{text-align:center}
+  .final-grid{order:-1;width:88vw;height:39vh}
+  .final-grid img{width:60px;height:82px}
+  .moon{width:92px;height:92px;right:7%;top:8%}
+  .moon:after{width:90px;height:90px;left:27px;top:-10px}
+  #progress{max-width:62vw;overflow:hidden}
+}
+@media(max-height:650px) and (min-width:901px){
+  .scene{padding-top:42px;padding-bottom:42px}
+  .headline{font-size:clamp(38px,5vw,72px)}
+  .photo-stage{height:78vh}
+  .letter-card{height:80vh}
+}
+
+.fixed-nav{position:fixed;z-index:300;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;padding:7px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(10,7,17,.62);backdrop-filter:blur(18px);box-shadow:0 12px 35px rgba(0,0,0,.22)}
+.fixed-nav button{width:44px;height:44px;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;font-size:22px;line-height:1;touch-action:manipulation}
+.fixed-nav button:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+.fixed-nav .nav-count{min-width:86px;text-align:center;font-size:11px;font-weight:900;letter-spacing:.12em;color:#ffd6e2}
+.light .fixed-nav{background:rgba(255,255,255,.82);border-color:rgba(120,70,95,.16)}
+.light .fixed-nav button{color:#5b233e;background:rgba(255,255,255,.9);border-color:#e7b2c8}
+.light .fixed-nav .nav-count{color:#8b3056}
+@media(max-width:700px){.fixed-nav{bottom:10px}.fixed-nav button{width:42px;height:42px}.fixed-nav .nav-count{min-width:70px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <nav class="fixed-nav" aria-label="Experience navigation"><button id="prevBtn" aria-label="Previous">←</button><span class="nav-count" id="navCount">01 / 23</span><button id="nextBtn" aria-label="Next">→</button></nav>
+  <div id="hud">
+    <div class="brand">SONAL → RUTU RANI · SECRET BIRTHDAY EXPERIENCE</div>
+    <div class="hud-actions">
+      <button class="hud-btn" id="homeBtn" aria-label="Restart">
+        <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/></svg>
+      </button>
+      <button class="hud-btn" id="soundBtn" aria-label="Toggle sound">
+        <svg id="soundIcon" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 9.5c1.6 1.4 1.6 3.6 0 5"/></svg>
+      </button>
+    </div>
+  </div>
+  <main id="scenes"></main>
+  <div id="progress"></div>
+  <div id="counter">01 / 23</div>
+</div>
+
+<script>
+const birthdayData={
+  friendName:"Rutu Rani",
+  myName:"Sonal",
+  friendshipSince:"Childhood / school",
+  photos:Array.from({length:18},(_,i)=>`assets/photos/${String(i+1).padStart(2,"0")}.jpeg`),
+  memories:[],
+  insideJokes:[],
+  chats:[]
+};
+
+// Exact source message supplied by Sonal, preserved in full.
+const fullLetter=[
+`HAPPIEST BIRTHDAY TO MY BESTEST BEST BESTFRIEND RUTUUUU RANIIII!!!! 🥳🥳🥳❤️🌷✨🤩🤌🏻😍🥰🫶🏻🫂💌👀🧿`,
+`From our childhood, from the same school, from those silly little chitchats and stupid laughs till today… our friendship has literally grown with us, but the BEST thing is that our bond has never grown old or changed even a little bit. 🥹❤️‍🩹🫂✨🧿`,
+`Aplya friendship chi story kharach khup special aahe reee… 🥹🌷 From being together almost every day in school to now being in different countries and not meeting every day, there is not even a SINGLE difference between us. 🫶🏻🥹❤️`,
+`Tu abroad la geli, apan daily bhetat nahi, roj chitchats hot nahi, sagla routine change zala…😭🫂❤️‍🩹👀
+BUTTT.....`,
+`Same toneee, same bakchodi, same chitchats, same understanding, same comfort, same pagalpan… NOTHING HAS CHANGEDDD! 😭😭❤️🧿🤌🏻 Apan ekmekanna bhetlo ki gap kiti months/years cha hota he literally visrun jatooo… because our friendship just picks up from where we left it. 🥹🫶🏻🌍💌`,
+`And that is what makes you my UNREPLACEABLE BESTFRIEND. 🫣🫰🏻❤️‍🩹 There are some people who come into our life and become special, but tu tar majhya life madhla ek asa person ahes jichi replacement possible ch nahi! 👀❤️🫂🧿`,
+`Tu kiti hi lamb aslis, kontyahi country madhye aslis, apan roj bhetat naslo tari tu majhyasathi nehmich titkich close ahes. 🥹🌍❤️ Aplya madhye distance aalay, pan bond madhye ek percent suddha distance nahi aalay. 🫶🏻🧿✨`,
+`I absolutely LOVE how we can meet after so many years and still talk in the exact same way, laugh at the exact same stupid things, tease each other like nothing ever happened and continue our chitchats without any awkwardness at allllll. 😂😭🤌🏻👀❤️`,
+`Kharach, some friendships need daily conversations to stay strong… but ours doesn't. 🥹❤️‍🩹 Because aplya bond la daily meeting, daily talking or being around each other chi garajach nahi. Aplya friendship la fakt ekmekanchi garaj aahe. 🫂🫶🏻🧿🌷`,
+`You are not just my best friend, you are one of those very very few people with whom I can be my COMPLETE pagal self without thinking anything. 🤭😂❤️ You know me, understand me, tolerate me 😭😂, support me and still choose to stayyyy… so honestly THANK YOUUUU RUTUUU RANIIII! 🫂❤️‍🩹🫰🏻`,
+`Thank you for all the childhood memories, all those school memories, all the endless chitchats, all the laughter, all the stupid moments and all the beautiful memories we have created together. 🥹🌷💌✨ And I knowww, no matter how much life changes, we are going to keep creating manyyyy more memories together. 🫶🏻👀🌍🥳`,
+`Life may take us to different places, different countries, different colleges and different paths… but I just know one thing — tu majhi Rutu hotis, ahes, ani nehmich rahshil. 🥹❤️‍🩹🧿🫂`,
+`Konachiii najar naaa laguuu aplya friendship laaaa!!! 🧿🧿🧿🤞🏻🫣❤️👀🌍 Because this bond is way too preciousss and way too specialll. 🥹🫶🏻✨`,
+`On your special day, I just want to wish you all the happiness in the world, endless success, lots and lots of love, beautiful memories, good health and everythingggg you deserve. 🩷🩵🌷✨ May you achieve everything you dream about and may this new year of your life be even more beautiful than you imagined. 🥹💌🤞🏻`,
+`And pleaseee always stay the same cute, crazy, amazing, shembdee and beautiful RUTUUUU that I have known since childhood. 🥹😂❤️🤌🏻🫣🫶🏻`,
+`I am genuinely soooo lucky and blessed to have a best friend like you. 🥹❤️‍🩹🫂 No matter how far you are, you will always have a veryyy special place in my heart. 🌍🫶🏻💌`,
+`LOVE YOUUUU SOOOOO MUCHHHH MY DARLOOOO, MY SHEMBDEEEE, MY POREEEE, MY RUTUUUU, MY RUTU RANIIIIII!!!! 😭😭❤️🫂🫰🏻🌷✨👀🤌🏻🧿`,
+`Once againnnn, HAPPY HAPPY HAPPY BIRTHDAYYYYY MY BESTEST BEST BESTFRIENDDDDD!!! 🥳🥳🥳🎂🎂🎂❤️🌷✨🫶🏻🫂💌👀🧿🤩😍🥰`,
+`And yessss madammmm, aata birthday celebrate kela, wishes gheun zhale, emotional zhalooo, sagla zhalaaa… 😭😂❤️`,
+`CHALOOO RUTUUU RANIIII, aataaa ZOPAAA!!! 😭😂🤌🏻💤 Birthday girl ahes mhanun raatbhar jagaycha license nahiyeee tumhalaaa!!! 👀😂 Ny tar udya uthlyavar dark circles yeil and then madam mhananar “Sonal bagh naa kiti tired distey mi” 😭😭😂🤌🏻`,
+`Mhanun aata phone side laaa thev, blanket gheee, eyes close karrr and ZOPPPPP!!! 😂🫣❤️💤`,
+`GOODDD NIGHTTTT MY DARLOOOO, SWEET DREAMSSSS POOOOREEEEE!!! 🥹❤️💤🌙🫶🏻🤌🏻🫂`,
+`LOVE YOUUUU FOREVERRRR MY UNREPLACEABLE RUTUUUU RANIIIIII 🫶🏻❤️‍🩹🧿🌷✨🌍👀🥹`
+];
+
+const scenes=[
+ {kind:"intro",theme:"dark",eyebrow:"a little something from Sonal",title:"Hey Rutu…",sub:"Wait.",button:"I'm ready"},
+ {kind:"mystery",theme:"dark",title:"I made something for you.",sub:"But… you have to actually go through it. No skipping. 👀",button:"Okay, I'm listening"},
+ {kind:"question",theme:"dark",title:"Do you know what today is?",sub:"Obviously you do. 😂<br><br>But I don't think you know…<br>…what I made for you.",button:"Show me"},
+ {kind:"birthday",theme:"light",eyebrow:"for the girl who deserves a whole experience",title:"HAPPY",second:"BIRTHDAY",sub:"RUTUUUU RANIIII ❤️",photo:1,button:"Take me into the story"},
+ {kind:"childhood",theme:"light",eyebrow:"before all this…",title:"We were just two kids.",sub:"Same school.<br>Same classrooms.<br>Same silly chitchats.<br>Same stupid laughs.",photo:18},
+ {kind:"timeline",theme:"light",eyebrow:"our little timeline",title:"From then…",second:"…to now.",sub:"Our friendship literally grew with us.",photos:[18,5,8],button:"Keep going"},
+ {kind:"school",theme:"light",eyebrow:"school days",title:"We didn't know these moments would matter this much.",sub:"Meeting almost every day.<br>Knowing every little thing.<br>Laughing at absolutely nothing.",photos:[18,5,8,9]},
+ {kind:"change",theme:"dark",eyebrow:"and then…",title:"Life changed.",sub:"You went abroad.<br>Different country.<br>Different routine.<br>We stopped meeting every day.",photo:15,button:"See what distance did"},
+ {kind:"distance",theme:"dark",eyebrow:"the geography of us",title:"Different countries.",sub:"Months passed. Years passed. Countries changed.",map:true,button:"But then…"},
+ {kind:"something",theme:"dark",title:"But then…",second:"Something didn't.",sub:"And that is the part I never want you to forget.",button:"Our friendship"},
+ {kind:"bond",theme:"dark",eyebrow:"the one thing distance couldn't touch",title:"OUR",second:"FRIENDSHIP.",sub:"Not even a little bit.",photos:[1,6,13,16],button:"Remember the reunion"},
+ {kind:"reunion",theme:"light",eyebrow:"and then you came back",title:"It felt like we had met yesterday.",sub:"Same toneee.<br>Same bakchodi.<br>Same chitchats.<br>Same understanding.<br>Same comfort.<br>Same pagalpan.",photo:18,button:"And then I realised…"},
+ {kind:"nothing",theme:"dark",title:"NOTHING",second:"CHANGED. ❤️",sub:"The gap was real.<br>The awkwardness was not.",photos:[18,8,10,12],button:"Tap the word"},
+ {kind:"distancebond",theme:"dark",eyebrow:"tap to change the story",title:"DISTANCE",sub:"Distance came between us.",interactive:true},
+ {kind:"unreplaceable",theme:"dark",eyebrow:"some people become special",title:"But you…",second:"…are unreplaceable.",sub:"My unreplaceable best friend.",photo:17,button:"Open our little museum"},
+ {kind:"museum",theme:"light",eyebrow:"our little museum of chaos 😂",title:"One memory at a time.",sub:"Tap the stack or press “Next memory”.",museum:true,button:"Next memory"},
+ {kind:"funny",theme:"dark",eyebrow:"okayyyy enough emotional drama",title:"Let's talk about how pagal we are. 😂",sub:"No serious faces allowed.",photos:[9,12,14,17],button:"Enter chaos"},
+ {kind:"archive",theme:"dark",eyebrow:"TOP SECRET: RUTU × SONAL FILES 🤫",title:"Open at your own risk.",sub:"No invented inside jokes. Only the real story you gave me.",archive:true,button:"Open the file"},
+ {kind:"letter",theme:"light",eyebrow:"okay… no more jokes.",title:"I actually want to tell you something.",letter:true,button:"I have one more thing"},
+ {kind:"future",theme:"dark",eyebrow:"more memories are waiting",title:"Different places.",second:"Different countries. Different colleges. Different paths.",sub:"But… tu majhi Rutu hotis.<br>Ahes.<br>Ani nehmich rahshil.",photos:[2,6,13,16],button:"The final surprise"},
+ {kind:"final",theme:"dark",eyebrow:"for my Rutu Rani",title:"Distance may change where we are.",second:"But it will never change what we are.",sub:"MY UNREPLACEABLE BEST FRIEND. ❤️",final:true,button:"One last thing…"},
+ {kind:"sleep",theme:"night",eyebrow:"okay madammmm…",title:"Birthday celebrate kela.",second:"AATAAA ZOPAAA!!! 😭😂🤌🏻💤",sub:"Wishes gheun zhale.<br>Emotional zhalooo.<br>Sagla zhalaaa… 😭😂❤️",sleep:true,button:"Good night"},
+ {kind:"goodnight",theme:"night",eyebrow:"the end… for tonight",title:"GOODDD NIGHTTTT MY DARLOOOO 🌙❤️",second:"SWEET DREAMSSSS POOOOREEEEE 🥹❤️💤",sub:"LOVE YOUUUU FOREVERRRR MY UNREPLACEABLE RUTUUUU RANIIIIII 🫶🏻❤️‍🩹🧿🌷✨🌍👀🥹",goodnight:true}
+];
+
+const scenesEl=document.getElementById("scenes");
+const progress=document.getElementById("progress");
+const counter=document.getElementById("counter");
+let soundOn=true,audioCtx=null;
+
+function arrow(){
+ return `<span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>`;
+}
+function button(label,action="next"){
+ return `<button class="cta" data-action="${action}"><span>${label}</span>${arrow()}</button>`;
+}
+function img(n,cls=""){
+ return `<img class="${cls}" src="${birthdayData.photos[n-1]}" alt="Rutu memory" loading="eager">`;
+}
+function photoStage(nums){
+ const arr=nums||[];
+ const main=arr[0]||1, a=arr[1], b=arr[2];
+ return `<div class="photo-stage">
+   <div class="photo-frame">${img(main)}</div>
+   ${a?`<div class="photo-card card-a">${img(a)}</div>`:""}
+   ${b?`<div class="photo-card card-b">${img(b)}</div>`:""}
+ </div>`;
+}
+function photoRow(nums){
+ return `<div class="photo-row">${nums.map((n,i)=>`<div class="photo-tile" style="--r:${[-7,4,-2,6][i%4]}deg">${img(n)}</div>`).join("")}</div>`;
+}
+function mapScene(){
+ return `<div class="map">
+   <div class="pin one">🇮🇳</div><div class="pin two">🌍</div><div class="distance-dot"></div>
+   <div style="position:absolute;left:9%;bottom:13%;font-weight:900;font-size:12px">SONAL</div>
+   <div style="position:absolute;right:8%;bottom:13%;font-weight:900;font-size:12px">RUTU</div>
+   <div style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font-size:12px;color:#eac7d4">distance ≠ bond</div>
+ </div>`;
+}
+function render(i){
+ const s=scenes[i];
+ const theme=s.theme||"dark";
+ let body=`<section class="scene ${theme} active" data-index="${i}"><div class="ambient"></div><div class="scene-inner">`;
+
+ if(s.kind==="intro"||s.kind==="mystery"||s.kind==="question"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow||""}</div><h1 class="headline">${s.title}</h1><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoStage(i===0?[1,2,4]:i===1?[3,5,7]:[6,9,12]);
+ } else if(s.kind==="birthday"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><div class="display">${s.title}</div><div class="display rose">${s.second}</div><div class="headline small" style="margin-top:22px;color:#8b3056">${s.sub}</div>${button(s.button)}</div>`;
+   body+=photoStage([s.photo,2,4]);
+ } else if(s.kind==="childhood"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><p class="lead">${s.sub}</p><div class="timeline"></div><div class="timeline-labels"><span>THEN</span><span>SCHOOL</span><span>NOW</span></div>${button("Next memory")}</div>`;
+   body+=photoStage([18,5,8]);
+ } else if(s.kind==="timeline"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><div class="headline second">${s.second}</div><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="school"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><p class="lead">${s.sub}</p>${button("Turn the page")}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="change"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><p class="lead">${s.sub}</p><div class="highlight-box"><strong>But the story didn't end.</strong><br><span class="subline">It only became a story about distance.</span></div>${button(s.button)}</div>`;
+   body+=photoStage([s.photo,16,17]);
+ } else if(s.kind==="distance"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=mapScene();
+ } else if(s.kind==="something"){
+   body+=`<div class="center" style="grid-column:1/-1"><div class="eyebrow">THE PART THAT MATTERS</div><h1 class="headline">${s.title}</h1><div class="headline second">${s.second}</div><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+ } else if(s.kind==="bond"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="display">${s.title}</h1><div class="display rose">${s.second}</div><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="reunion"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoStage([18,5,8]);
+ } else if(s.kind==="nothing"){
+   body+=`<div class="copy"><div class="eyebrow">THE BIG REVEAL</div><h1 class="display">${s.title}</h1><div class="display rose">${s.second}</div><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="distancebond"){
+   body+=`<div class="center" style="grid-column:1/-1"><div class="eyebrow">${s.eyebrow}</div>
+     <button class="big-word outline" id="distanceWord" data-action="bond">DISTANCE</button>
+     <p class="lead" id="bondText">${s.sub}</p>
+     <p class="subline" id="bondSmall">Tap it. 👆🏻</p>
+     ${button("Continue")}</div>`;
+ } else if(s.kind==="unreplaceable"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><div class="headline second">${s.second}</div><p class="lead">${s.sub}</p>${button(s.button)}</div>`;
+   body+=photoStage([s.photo,4,13]);
+ } else if(s.kind==="museum"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><p class="lead">${s.sub}</p><div class="memory-info"><div class="memory-count" id="memoryCount">MEMORY 01 / 18</div><p id="memoryCaption" style="margin-top:8px">A little piece of our chaos archive.</p></div>${button(s.button,"memory")}</div>`;
+   body+=`<div class="stack" id="memoryStack">${[1,2,3].map((n,j)=>`<div class="stack-card" data-j="${j}">${img(n)}</div>`).join("")}</div>`;
+ } else if(s.kind==="funny"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><p class="lead">${s.sub}</p><div class="highlight-box">No invented jokes. Just your real photographs and the chaos you already gave me. 😂</div>${button(s.button)}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="archive"){
+   body+=`<div class="center" style="grid-column:1/-1"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><p class="lead">${s.sub}</p>
+     <div class="archive-grid" id="archiveGrid">
+       ${["Childhood memories","School chitchats","Same pagalpan","Distance changed — bond didn't","UNREPLACEABLE"].map((t,k)=>`<button class="archive-card" style="--r:${[-3,2,-2,3,-1][k]}deg" data-archive="${k}"><b>FILE 0${k+1}</b><p>${t}</p></button>`).join("")}
+     </div>${button(s.button,"archive")}</div>`;
+ } else if(s.kind==="letter"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><p class="lead">This is your message, not a generic birthday paragraph. Every part is kept. ❤️</p>${button(s.button)}</div>`;
+   body+=`<article class="letter-card"><div class="letter-head">For my Rutu Rani — from Sonal ❤️</div><div class="letter-body">${fullLetter.map(p=>`<p>${escapeHtml(p).replace(/\n/g,"<br>")}</p>`).join("")}</div></article>`;
+ } else if(s.kind==="future"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><div class="headline second">${s.second}</div><p class="lead">${s.sub}</p><div class="highlight-box"><strong>More memories are waiting.</strong><br><span class="subline">This story isn't finished. 🫶🏻</span></div>${button(s.button)}</div>`;
+   body+=photoRow(s.photos);
+ } else if(s.kind==="final"){
+   body+=`<div class="copy"><div class="eyebrow">${s.eyebrow}</div><div class="display">HAPPY</div><div class="display rose">BIRTHDAY</div><div class="headline small" style="margin-top:20px">${s.title}</div><div class="final-message pink" style="margin-top:12px">${s.second}</div><p class="lead" style="margin-top:15px">${s.sub}</p>${button(s.button)}</div>`;
+   body+=`<div class="final-grid" id="finalGrid">${birthdayData.photos.map((_,i)=>img(i+1)).join("")}</div>`;
+ } else if(s.kind==="sleep"){
+   body+=`<div class="center" style="grid-column:1/-1"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline">${s.title}</h1><div class="display rose" style="font-size:clamp(55px,8vw,120px)">${s.second}</div><p class="lead">${s.sub}</p>
+   <p class="lead" style="margin-top:12px">Birthday girl ahes mhanun raatbhar jagaycha license nahiyeee tumhalaaa!!! 👀😂</p>
+   <div class="warning">⚠️ DARK CIRCLE ALERT ⚠️</div>
+   <div class="highlight-box" style="max-width:760px;margin-top:16px">Mhanun aata phone side laaa thev, blanket gheee, eyes close karrr and ZOPPPPP!!! 😂🫣❤️💤</div>
+   <p class="subline" style="margin-top:14px">And yes, if tomorrow you say “Sonal bagh naa kiti tired distey mi” 😭😭😂🤌🏻 … I warned you.</p>
+   ${button(s.button)}</div>`;
+ } else if(s.kind==="goodnight"){
+   body+=`<div class="stars"></div><div class="moon"></div><div class="center" style="grid-column:1/-1"><div class="eyebrow">${s.eyebrow}</div><h1 class="headline small">${s.title}</h1><div class="headline second">${s.second}</div><p class="lead" style="max-width:850px">${s.sub}</p><div class="highlight-box" style="max-width:760px">🧿🌷✨🌍<br><strong>MY UNREPLACEABLE RUTUUUU RANIIIIII</strong></div><button class="cta" data-action="replay"><span>Replay the experience</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></button></div>`;
+ }
+ body+=`</div></section>`;
+ return body;
+}
+function escapeHtml(s){
+ return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+function build(){
+ scenesEl.innerHTML=scenes.map((_,i)=>render(i)).join("");
+ const all=[...scenesEl.querySelectorAll(".scene")];
+ all.forEach((s,i)=>{s.classList.toggle("active",i===0);s.style.visibility=i===0?"visible":"hidden";s.style.opacity=i===0?"1":"0"});
+ progress.innerHTML=scenes.map((_,i)=>`<span class="dot${i===0?" active":""}"></span>`).join("");
+}
+build();
+
+const sceneEls=[...document.querySelectorAll('.scene')];
+const dots=[...document.querySelectorAll('.dot')];
+const navCount=document.getElementById('navCount');
+let current=0,memoryIndex=0;
+
+function playTone(freq=520,dur=.12){
+  if(!soundOn)return;
+  try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended')audioCtx.resume(); const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.frequency.value=freq; g.gain.setValueAtTime(.0001,audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(.025,audioCtx.currentTime+.02); g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur); o.connect(g).connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+dur+.02);}catch(e){}
+}
+function confetti(){
+  const host=document.getElementById('app');
+  for(let i=0;i<28;i++){const el=document.createElement('span');el.textContent=['✦','·','♥','✧'][i%4];el.style.cssText=`position:absolute;z-index:90;left:50%;top:50%;pointer-events:none;color:${i%3===0?'#ffd98a':i%3===1?'#ff86ad':'#b9a6ff'};font-size:${8+Math.random()*16}px`;host.appendChild(el);const x=(Math.random()-.5)*innerWidth*1.15,y=(Math.random()-.5)*innerHeight*1.05;el.animate([{transform:'translate(0,0) rotate(0deg)',opacity:1},{transform:`translate(${x}px,${y}px) rotate(${Math.random()*500}deg)`,opacity:0}],{duration:1200+Math.random()*500,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>el.remove();}
+}
+function animateScene(s){
+  if(!s)return;
+  s.classList.add('active');s.style.visibility='visible';s.style.opacity='1';
+  const items=s.querySelectorAll('.eyebrow,.headline,.display,.lead,.subline,.cta,.photo-stage,.photo-row,.map,.big-word,.memory-info,.stack,.archive-grid,.letter-card,.final-grid,.highlight-box,.warning');
+  const photos=s.querySelectorAll('.photo-frame,.photo-card,.photo-tile,.stack-card');
+  items.forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(20px) scale(.985)';el.style.transition=`opacity .55s ease ${Math.min(i,10)*45}ms,transform .55s ease ${Math.min(i,10)*45}ms`;requestAnimationFrame(()=>{el.style.opacity='1';el.style.transform='translateY(0) scale(1)';});});
+  photos.forEach((el,i)=>{el.style.opacity='0';el.style.filter='blur(7px)';el.style.transition=`opacity .7s ease ${180+i*55}ms,filter .7s ease ${180+i*55}ms`;requestAnimationFrame(()=>{el.style.opacity='1';el.style.filter='blur(0)';});});
+  if(['3','10','12','19'].includes(s.dataset.index))setTimeout(confetti,350);
+  if(s.dataset.index==='13')setupBond(s);
+  if(s.dataset.index==='15')setupMuseum(s);
+  if(s.dataset.index==='17')setupArchive(s);
+  if(s.dataset.index==='20')setTimeout(explodeFinal,500);
+}
+function updateNav(){
+  navCount.textContent=String(current+1).padStart(2,'0')+' / '+sceneEls.length;
+  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+  document.getElementById('prevBtn').style.visibility=current===0?'hidden':'visible';
+  document.getElementById('nextBtn').style.visibility=current===sceneEls.length-1?'hidden':'visible';
+}
+function show(nextIndex){
+  const next=((nextIndex%sceneEls.length)+sceneEls.length)%sceneEls.length;
+  if(next===current){animateScene(sceneEls[current]);return;}
+  const prev=sceneEls[current], target=sceneEls[next];
+  prev.classList.remove('active');prev.style.visibility='hidden';prev.style.opacity='0';
+  target.classList.add('active');target.style.visibility='visible';target.style.opacity='0';
+  current=next;updateNav();
+  requestAnimationFrame(()=>{target.style.opacity='1';animateScene(target);});
+  playTone(current%2?560:680,.1);
+}
+function goNext(){show(current+1)}
+function goPrev(){show(current-1)}
+function reset(){current=0;memoryIndex=0;sceneEls.forEach((s,i)=>{s.classList.toggle('active',i===0);s.style.visibility=i===0?'visible':'hidden';s.style.opacity=i===0?'1':'0'});updateNav();animateScene(sceneEls[0]);playTone(660,.12)}
+function setupBond(scene){
+ const w=scene.querySelector('#distanceWord'); if(!w||w.dataset.bound)return; w.dataset.bound='1';
+ w.addEventListener('click',()=>{const on=w.classList.toggle('bond');w.classList.toggle('outline',!on);w.textContent=on?'BOND':'DISTANCE';scene.querySelector('#bondText').innerHTML=on?'Distance came between us.<br><strong>But never between our bond.</strong>':'Distance came between us.';scene.querySelector('#bondSmall').textContent=on?'0% distance in our friendship. 🫶🏻🧿✨':'Tap it. 👆🏻';playTone(on?760:420,.15);if(on)confetti();});
+}
+function setupMuseum(scene){
+ const stack=scene.querySelector('#memoryStack'),count=scene.querySelector('#memoryCount'),caption=scene.querySelector('#memoryCaption');if(!stack||stack.dataset.bound)return;stack.dataset.bound='1';
+ const captions=['One little piece of our chaos archive.','A moment worth keeping.','Another page in our friendship.','Still us. Still the same.','A memory that survived the distance.'];
+ function draw(){const ids=[memoryIndex%18,(memoryIndex+1)%18,(memoryIndex+2)%18];stack.innerHTML=ids.map((id,j)=>`<div class="stack-card" style="z-index:${3-j};transform:rotate(${[-7,4,-1][j]}deg) translate(${[-10,8,0][j]}px,${[10,-5,0][j]}px)">${img(id+1)}</div>`).join('');count.textContent=`MEMORY ${String(memoryIndex+1).padStart(2,'0')} / 18`;caption.textContent=captions[memoryIndex%captions.length];}
+ function pop(){memoryIndex=(memoryIndex+1)%18;draw();playTone(590,.08)}
+ scene.querySelector('[data-action="memory"]')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();pop()});stack.addEventListener('click',e=>{e.stopPropagation();pop()});draw();
+}
+function setupArchive(scene){
+ const open=scene.querySelector('[data-action="archive"]');if(open&&!open.dataset.bound){open.dataset.bound='1';open.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();scene.querySelectorAll('.archive-card').forEach((c,i)=>setTimeout(()=>c.classList.add('open'),i*90));playTone(720,.13);});}
+ scene.querySelectorAll('.archive-card').forEach(c=>{if(c.dataset.bound)return;c.dataset.bound='1';c.addEventListener('click',e=>{e.stopPropagation();c.classList.toggle('open');playTone(480,.08)})});
+}
+function explodeFinal(){const grid=document.getElementById('finalGrid');if(!grid||grid.dataset.exploded)return;grid.dataset.exploded='1';const imgs=[...grid.querySelectorAll('img')],w=grid.clientWidth,h=grid.clientHeight,cx=w/2,cy=h/2;imgs.forEach((im,i)=>{const a=(i/imgs.length)*Math.PI*2,r=Math.min(w,h)*(.27+.08*(i%3));im.style.left=(cx+r*Math.cos(a)-55)+'px';im.style.top=(cy+r*Math.sin(a)-78)+'px';im.style.transform=`rotate(${(i%2?-1:1)*(8+i%5)}deg) scale(.55)`;setTimeout(()=>{im.style.opacity='1';im.style.transform=`rotate(${(i%2?-1:1)*(8+i%5)}deg) scale(1)`},i*45)});}
+
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-action]');if(!b)return;
+ const a=b.dataset.action;
+ if(a==='next'){e.preventDefault();e.stopPropagation();goNext();}
+ else if(a==='replay'){e.preventDefault();e.stopPropagation();reset();}
+ // memory/archive/bond have their own listeners; deliberately do not navigate here.
+});
+document.getElementById('nextBtn').addEventListener('click',goNext);
+document.getElementById('prevBtn').addEventListener('click',goPrev);
+document.getElementById('homeBtn').addEventListener('click',reset);
+document.getElementById('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;document.getElementById('soundBtn').style.opacity=soundOn?'1':'.48'});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();goNext()}else if(e.key==='ArrowLeft'){e.preventDefault();goPrev()}});
+let touchX=0;document.addEventListener('touchstart',e=>touchX=e.changedTouches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>75)show(current+(dx<0?1:-1))},{passive:true});
+updateNav();animateScene(sceneEls[0]);
+</script>
+</body>
+</html>
